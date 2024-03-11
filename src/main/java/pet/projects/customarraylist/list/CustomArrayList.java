@@ -68,4 +68,5 @@ public interface CustomArrayList<T> {
      * @param c компаратор элементов списка
      */
     void quickSort(Comparator<? super T> c);
+
 }
