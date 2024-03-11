@@ -1,4 +1,4 @@
-package pet.projects.customarraylist;
+package pet.projects.customarraylist.list;
 
 import java.util.*;
 
@@ -7,7 +7,7 @@ import java.util.*;
  *
  * @param <T> тип элементов в списке
  */
-public class CustomArrayList<T> {
+public class CustomArrayListImpl<T> implements CustomArrayList<T> {
     /**
      * Начальная емкость по умолчанию.
      */
@@ -26,7 +26,7 @@ public class CustomArrayList<T> {
     /**
      * Конструктор для создания пустого списка с начальной емкостью 10.
      */
-    public CustomArrayList() {
+    public CustomArrayListImpl() {
         array = new Object[DEFAULT_CAPACITY];
         size = 0;
     }
@@ -36,6 +36,7 @@ public class CustomArrayList<T> {
      *
      * @param element элемент, который нужно добавить
      */
+    @Override
     public boolean add(T element) {
         add(element, array, size);
         return true;
@@ -48,6 +49,7 @@ public class CustomArrayList<T> {
      * @param element элемент, который нужно вставить
      * @throws IndexOutOfBoundsException если индекс выходит за пределы списка
      */
+    @Override
     public void add(int index, T element) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Index " + index + " out of bounds for size: " + size);
@@ -76,6 +78,7 @@ public class CustomArrayList<T> {
      * @return элемент на указанной позиции
      * @throws IndexOutOfBoundsException если индекс выходит за пределы списка
      */
+    @Override
     public T get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index " + index + " out of bounds for size: " + size);
@@ -89,6 +92,7 @@ public class CustomArrayList<T> {
      * @param index индекс элемента, который нужно удалить
      * @throws IndexOutOfBoundsException если индекс выходит за пределы списка
      */
+    @Override
     public void remove(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
@@ -101,6 +105,7 @@ public class CustomArrayList<T> {
     /**
      * Очищает все элементы из списка.
      */
+    @Override
     public void clear() {
         final Object[] array = this.array;
         for (int to = size, i = size = 0; i < to; i++)
@@ -112,6 +117,7 @@ public class CustomArrayList<T> {
      *
      * @param c компаратор, используемый для сортировки
      */
+    @Override
     public void sort(Comparator<? super T> c) {
         Arrays.sort((T[]) array, 0, size, c);
     }
@@ -121,6 +127,7 @@ public class CustomArrayList<T> {
      *
      * @return длину списка
      */
+    @Override
     public int size() {
         return size;
     }
@@ -157,6 +164,7 @@ public class CustomArrayList<T> {
      *
      * @param c компаратор элементов списка
      */
+    @Override
     public void quickSort(Comparator<? super T> c) {
         T[] array = (T[]) this.array;
         quickSort(array, 0, size - 1, c);
@@ -170,7 +178,7 @@ public class CustomArrayList<T> {
      * @param high  индекс конца подмассива
      * @param c     компаратор элементов массива
      */
-    public void quickSort(T[] array, int low, int high, Comparator<? super T> c) {
+    private void quickSort(T[] array, int low, int high, Comparator<? super T> c) {
         if (low < high) {
             int pi = partition(array, low, high, c);
 

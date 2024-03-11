@@ -3,6 +3,8 @@ package pet.projects.customarraylist;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import pet.projects.customarraylist.list.CustomArrayList;
+import pet.projects.customarraylist.list.CustomArrayListImpl;
 import pet.projects.customarraylist.model.User;
 
 import java.util.Random;
@@ -13,7 +15,7 @@ class CustomArrayListApplicationTests {
     @Test
     void addTest() {
         Random random = new Random();
-        CustomArrayList<Integer> numbers = new CustomArrayList<>();
+        CustomArrayList<Integer> numbers = new CustomArrayListImpl<>();
         Assertions.assertEquals(numbers.size(), 0);
         for (int i = 0; i < 50; i++) {
             numbers.add(random.nextInt() % 100);
@@ -28,7 +30,7 @@ class CustomArrayListApplicationTests {
         User user2 = new User("Nikola", 2, "nikola@mail.ru");
         User user3 = new User("Alex", 3, "alex@mail.ru");
 
-        CustomArrayList<User> users = new CustomArrayList<>();
+        CustomArrayList<User> users = new CustomArrayListImpl<>();
         users.add(user);
         users.add(user3);
         users.add(user1);
@@ -47,7 +49,7 @@ class CustomArrayListApplicationTests {
     @Test
     void clearTest() {
         Random random = new Random();
-        CustomArrayList<Integer> numbers = new CustomArrayList<>();
+        CustomArrayList<Integer> numbers = new CustomArrayListImpl<>();
         Assertions.assertEquals(numbers.size(), 0);
         for (int i = 0; i < 50; i++) {
             numbers.add(random.nextInt() % 100);
@@ -61,8 +63,7 @@ class CustomArrayListApplicationTests {
 
     @Test
     void sortTest() {
-        Random random = new Random();
-        CustomArrayList<Integer> numbers = new CustomArrayList<>();
+        CustomArrayList<Integer> numbers = new CustomArrayListImpl<>();
         numbers.add(2);
         numbers.add(5);
         numbers.add(-12);
@@ -72,7 +73,7 @@ class CustomArrayListApplicationTests {
         numbers.add(0);
         numbers.add(45);
 
-        CustomArrayList<Integer> numbers1 = new CustomArrayList<>();
+        CustomArrayList<Integer> numbers1 = new CustomArrayListImpl<>();
         numbers1.add(-12);
         numbers1.add(-4);
         numbers1.add(0);
@@ -89,7 +90,7 @@ class CustomArrayListApplicationTests {
 
     @Test
     void getTest() {
-        CustomArrayList<String> stringCustomArrayList = new CustomArrayList<>();
+        CustomArrayList<String> stringCustomArrayList = new CustomArrayListImpl<>();
         String test = "test";
         stringCustomArrayList.add(test);
 
@@ -100,7 +101,7 @@ class CustomArrayListApplicationTests {
     @Test
     void removeTest() {
         Random random = new Random();
-        CustomArrayList<Integer> numbers = new CustomArrayList<>();
+        CustomArrayList<Integer> numbers = new CustomArrayListImpl<>();
         for (int i = 0; i < 50; i++) {
             numbers.add(random.nextInt() % 100);
         }
@@ -115,7 +116,7 @@ class CustomArrayListApplicationTests {
     @Test
     void hugeSizeTest() {
         Random random = new Random();
-        CustomArrayList<Integer> numbers = new CustomArrayList<>();
+        CustomArrayList<Integer> numbers = new CustomArrayListImpl<>();
 
         Assertions.assertThrows(OutOfMemoryError.class, () -> {
             for (int i = 0; i < Integer.MAX_VALUE - 8; i++) {
@@ -131,7 +132,7 @@ class CustomArrayListApplicationTests {
         User user2 = new User("Nikola", 2, "nikola@mail.ru");
         User user3 = new User("Alex", 3, "alex@mail.ru");
 
-        CustomArrayList<User> users = new CustomArrayList<>();
+        CustomArrayList<User> users = new CustomArrayListImpl<>();
         users.add(user);
         users.add(user3);
         users.add(user1);
